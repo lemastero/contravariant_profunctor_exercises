@@ -10,6 +10,8 @@ libraryDependencies ++= Seq(
   "org.typelevel" %% "cats-core" % catsVersion withSources(),
   "org.typelevel" %% "cats-laws" % catsVersion withSources(),
 
+  "io.monix" %% "monix" % "3.1.0" withSources(),
+
   "dev.zio" %% "zio" % "1.0.0-RC17" withSources(),
 
   "org.scalaz"    %% "scalaz-core" % "7.3.0-M31" withSources(),
