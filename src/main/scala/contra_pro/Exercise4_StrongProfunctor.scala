@@ -11,7 +11,7 @@ class Exercise4_StrongProfunctor {
     override def dimap[A,B,C,D](fab: A => B)(f: C => A)(g: B => D): C => D = ???
   }
 
-  /** Exercise SP.2 - Define  Step Prounctor in terms of Strong and Choice Profunctors */
+  /** Exercise SP.2 - Define  Step Profunctor in terms of Strong and Choice Profunctors */
   trait Step[P[_,_]] extends Choice[P] with Strong[P] {
     def step[A,B,C,D](pab: P[A,B]): P[Either[D, (A,C)], Either[D, (B,C)]] = ???
   }

@@ -7,9 +7,9 @@ class Exercise1_Contravariant {
 
   /** Exercise C.1 - Define Contravariant instance for Predicate */
   case class Predicate[A](fun: A => Boolean)
-  val PredicateContravariant = new Contravariant[Predicate] {
-    override def contramap[A, B](pred: Predicate[A])(fba: B => A): Predicate[B] =
-      Predicate[B](fba andThen pred.fun)
+
+  val PredicateContravariant: Contravariant[Predicate] = new Contravariant[Predicate] {
+    override def contramap[A, B](pred: Predicate[A])(fba: B => A): Predicate[B] = ???
   }
 
   /** Exercise C.2 - Define instance of Contravariant for Show */
@@ -27,12 +27,14 @@ class Exercise1_Contravariant {
 
   /** Exercise C.4 - Define instance of Contravariant for Reader */
   case class Reader[R,V](run: R => V)
+
   def readerContra[V]: Contravariant[Reader[?, V]] = new Contravariant[Reader[*, V]] {
     override def contramap[A, B](fa: Reader[A, V])(f: B => A): Reader[B, V] = ???
   }
 
   /** Exercise C.5 - Define instance of Contravariant for ZIO */
   case class ZIO[R,E,A](run: R => Either[E,A])
+
   def zioContravariant[F[_], E, A]: Contravariant[ZIO[*,E,A]] =
     new Contravariant[ZIO[*,E,A]] {
       override def contramap[R, RR](fa: ZIO[R, E, A])(f: RR => R): ZIO[RR, E, A] = ???
@@ -40,13 +42,15 @@ class Exercise1_Contravariant {
 
   /** Exercise C.6 - Define instance of Contravariant for Logger */
   case class Logger[A](log: A => Task[String])
+
   val loggerContravariant: Contravariant[Logger] = new Contravariant[Logger] {
     override def contramap[A, B](fa: Logger[A])(f: B => A): Logger[B] = ???
   }
 
   /** Exercise C.7 - Define Contravariant instance for Opposite category */
   case class Op[R,A](getOp: A => R)
-  def opContravariant[R] = new Contravariant[Op[R, *]] {
+
+  def opContravariant[R]: Contravariant[Op[R, *]] = new Contravariant[Op[R, *]] {
     override def contramap[A, B](fa: Op[R, A])(f: B => A): Op[R, B] = ???
   }
 
@@ -70,6 +74,7 @@ class Exercise1_Contravariant {
 
   /** Exercise C.11 - Kleisli Contravariant */
   case class Kleisli[F[_],A,B](run: A => F[B])
+
   def kleisliContravariant[F[_],B]: Contravariant[Kleisli[F,*,B]] = new Contravariant[Kleisli[F,*,B]] {
     override def contramap[A, AA](fa: Kleisli[F, A, B])(f: AA => A): Kleisli[F, AA, B] = ???
   }

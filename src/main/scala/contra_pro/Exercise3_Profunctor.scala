@@ -12,6 +12,7 @@ class Exercise3_Profunctor {
 
   /** Exercise P.2 - Define 2 different instances of Profunctor for ZIO */
   case class ZIO[R,E,A](run: R => Either[E,A])
+
   def zioProfunctor[E]: Profunctor[ZIO[*,E,*]] = new Profunctor[ZIO[*,E,*]] {
     override def dimap[R,A,RR,AA](fab: ZIO[R,E,A])(f: RR => R)(g: A => AA): ZIO[RR,E,AA] = ???
   }
