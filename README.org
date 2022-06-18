@@ -1,0 +1,4 @@
+Exercises to my talk *Contravariant functors in Scala*.
+
+
+[[https://www.slideshare.net/PiotrParadziski/contravariant-functors-in-scala][Slides]]
